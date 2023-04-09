@@ -5,6 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, URLField, BooleanField
 from wtforms.validators import URL, InputRequired
 from datetime import datetime
+import psycopg2
 import os
 
 # Environment Variables
