@@ -33,12 +33,14 @@
                         {% for cafe in cafes %}
                         <article class="thumb">
                             <a href="{{ cafe.img_url }}" class="image"><img src="{{ cafe.img_url }}" alt=""></a>
-                            <h2> &nbsp; {{ cafe.name }} &emsp;
+                            <h2> &nbsp; {{ cafe.name }} <br> &nbsp;
+                                <span style="font-size: 0.8em;">{{ cafe.location }} &emsp;
                                 {% if cafe.has_wifi +%}
                                     <i class="fa-solid fa-wifi"></i> <span style="color: green;"><i class="fa-solid fa-circle-check"></i></span>
                                 {% else %}
                                     <i class="fa-solid fa-wifi"></i> <span style="color: red;"> <i class="fa-solid fa-circle-xmark"></i></span>
                                 {% endif %} &nbsp;
+                                </span>
                             </h2>
                             <p> &emsp; <a href="{{ cafe.map_url }}"><i class="fa-solid fa-map-pin"></i></a> &emsp;
                                 {% if cafe.has_sockets %}

@@ -2,8 +2,8 @@ from flask import Flask, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap5
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, URLField, SelectField
-from wtforms.validators import DataRequired, URL
+from wtforms import StringField, SubmitField, URLField, SelectField, TextAreaField
+from wtforms.validators import URL, InputRequired
 from datetime import datetime
 
 # Initialize Flask App
@@ -15,6 +15,25 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cafes.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy()
 db.init_app(app)
+
+# Initialize Bootstrap
+bootstrap = Bootstrap5()
+bootstrap.init_app(app)
+
+
+# Initialize Cafe Add form
+class CafeAddForm(FlaskForm):
+    name = StringField(label='Cafe Name', validators=[InputRequired()])
+    map_url = URLField(label='Map URL', validators=[InputRequired(), URL()])
+    img_url = URLField(label='Image URL', validators=[InputRequired(), URL()])
+    location = StringField(label='Location', validators=[InputRequired()])
+    seats = SelectField(label='Seats', choices=['Yes', 'No'], validators=[InputRequired()])
+    has_toilet = SelectField(label='Has Toilet', choices=['Yes', 'No'], validators=[InputRequired()])
+    has_sockets = SelectField(label='Has Sockets', choices=['Yes', 'No'], validators=[InputRequired()])
+    has_wifi = SelectField(label='Has WiFi', choices=['Yes', 'No'], validators=[InputRequired()])
+    can_take_calls = SelectField(label='Can Take Calls', choices=['Yes', 'No'], validators=[InputRequired()])
+    coffee_price = StringField(label='Coffee Price', validators=[InputRequired()])
+    submit = SubmitField(label='Submit')
 
 
 # Cafe TABLE Configuration
@@ -45,6 +64,11 @@ with app.app_context():
 def home():  # put application's code here
     all_cafes = list(db.session.execute(db.select(Cafe)).scalars())
     return render_template('index.html', cafes=all_cafes)
+
+
+@app.route('/add', methods=['GET', 'POST'])
+def add_cafe():
+    pass
 
 
 @app.context_processor
