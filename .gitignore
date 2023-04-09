@@ -163,7 +163,8 @@ cython_debug/
 # custom files to ignore
 rough.py
 blog.db
-cafes.db
+instance/cafes.db
+rough.html
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
