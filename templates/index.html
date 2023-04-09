@@ -5,126 +5,163 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Cafe and Wifi</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
-		<noscript><link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}" /></noscript>
-	    <script src="https://kit.fontawesome.com/e8f916ca47.js" crossorigin="anonymous"></script>
-    </head>
-	<body class="is-preload">
+<head>
+    <title>Cafe and Wifi</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}"/>
+    <noscript>
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}"/>
+    </noscript>
+    <script src="https://kit.fontawesome.com/e8f916ca47.js" crossorigin="anonymous"></script>
+</head>
+<body class="is-preload">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+<!-- Wrapper -->
+<div id="wrapper">
 
-				<!-- Header -->
-					<header id="header">
-						<h1><a href="index.html"><strong>Cafes and Wifi</strong> by Shubhendu 😄</a></h1>
-						<nav>
-							<ul>
-								<li><a href="#footer" class="icon solid fa-info-circle">About</a></li>
-							</ul>
-						</nav>
-					</header>
+    <!-- Header -->
+    <header id="header">
+        <h1><a href="index.html"><strong>Cafes and Wifi</strong> by Shubhendu 😄</a> <br>
+                {% from 'bootstrap/utils.html' import render_messages %}
+                    {{ render_messages() }}
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="#footer" class="icon fa-solid fa-plus">Add A New Cafe</a></li>
+            </ul>
+        </nav>
+    </header>
 
-				<!-- Main -->
-					<div id="main">
-                        {% for cafe in cafes %}
-                        <article class="thumb">
-                            <a href="{{ cafe.img_url }}" class="image"><img src="{{ cafe.img_url }}" alt=""></a>
-                            <h2> &nbsp; {{ cafe.name }} <br> &nbsp;
-                                <span style="font-size: 0.8em;">{{ cafe.location }} &emsp;
-                                {% if cafe.has_wifi +%}
-                                    <i class="fa-solid fa-wifi"></i> <span style="color: green;"><i class="fa-solid fa-circle-check"></i></span>
-                                {% else %}
-                                    <i class="fa-solid fa-wifi"></i> <span style="color: red;"> <i class="fa-solid fa-circle-xmark"></i></span>
-                                {% endif %} &nbsp;
+    <!-- Main -->
+    <div id="main">
+        {% for cafe in cafes %}
+            <article class="thumb">
+                <a href="{{ cafe.img_url }}" class="image"><img src="{{ cafe.img_url }}" alt=""></a>
+                <h2> &nbsp; {{ cafe.name }} <br> &nbsp;
+                    <span style="font-size: 0.8em;">{{ cafe.location }} &emsp;
+                        {% if cafe.has_wifi +%}
+                            <i class="fa-solid fa-wifi"></i>
+                            <span style="color: green;"><i class="fa-solid fa-circle-check"></i></span>
+                        {% else %}
+                            <i class="fa-solid fa-wifi"></i>
+                            <span style="color: red;"> <i class="fa-solid fa-circle-xmark"></i></span>
+                        {% endif %} &nbsp;
                                 </span>
-                            </h2>
-                            <p> &emsp; <a href="{{ cafe.map_url }}"><i class="fa-solid fa-map-pin"></i></a> &emsp;
-                                {% if cafe.has_sockets %}
-                                    <i class="fa-solid fa-plug"></i> <span style="color: green;"><i class="fa-solid fa-circle-check"></i></span>
-                                {% else %}
-                                    <i class="fa-solid fa-plug"></i> <span style="color: red;"> <i class="fa-solid fa-circle-xmark"></i></span>
-                                {% endif %}
-                                &emsp;
-                                {% if cafe.has_toilet %}
-                                    <i class="fa-solid fa-restroom"></i> <span style="color: green;"><i class="fa-solid fa-circle-check"></i></span>
-                                {% else %}
-                                    <i class="fa-solid fat-restroom"></i> <span style="color: red;"> <i class="fa-solid fa-circle-xmark"></i></span>
-                                {% endif %}
-                                &emsp;
-                                {% if cafe.can_take_calls %}
-                                    <i class="fa-solid fa-phone"></i> <span style="color: green;"><i class="fa-solid fa-circle-check"></i></span>
-                                {% else %}
-                                    <i class="fa-solid fa-phone"></i> <span style="color: red;"> <i class="fa-solid fa-circle-xmark"></i></span>
-                                {% endif %}
-                                &emsp;
-                                <i class="fa-solid fa-mug-hot"></i> {{ cafe.coffee_price }} &emsp;
-                                <i class="fa-solid fa-people-group"></i> {{ cafe.seats }}
-                            </p>
-                        </article>
-                        {% endfor %}
-					</div>
+                </h2>
+                <p> &emsp; <a href="{{ cafe.map_url }}"><i class="fa-solid fa-map-pin"></i></a> &emsp;
+                    {% if cafe.has_sockets %}
+                        <i class="fa-solid fa-plug"></i>
+                        <span style="color: green;"><i class="fa-solid fa-circle-check"></i></span>
+                    {% else %}
+                        <i class="fa-solid fa-plug"></i>
+                        <span style="color: red;"> <i class="fa-solid fa-circle-xmark"></i></span>
+                    {% endif %}
+                    &emsp;
+                    {% if cafe.has_toilet %}
+                        <i class="fa-solid fa-restroom"></i>
+                        <span style="color: green;"><i class="fa-solid fa-circle-check"></i></span>
+                    {% else %}
+                        <i class="fa-solid fat-restroom"></i>
+                        <span style="color: red;"> <i class="fa-solid fa-circle-xmark"></i></span>
+                    {% endif %}
+                    &emsp;
+                    {% if cafe.can_take_calls %}
+                        <i class="fa-solid fa-phone"></i>
+                        <span style="color: green;"><i class="fa-solid fa-circle-check"></i></span>
+                    {% else %}
+                        <i class="fa-solid fa-phone"></i>
+                        <span style="color: red;"> <i class="fa-solid fa-circle-xmark"></i></span>
+                    {% endif %}
+                    &emsp;
+                    <i class="fa-solid fa-mug-hot"></i> {{ cafe.coffee_price }} &emsp;
+                    <i class="fa-solid fa-people-group"></i> {{ cafe.seats }} &emsp;
+                    <span style="font-size: 1.2em; color"><a href="{{ url_for('delete_cafe', cafe_id=cafe.id) }}" aria-label="Delete">'❌'</a></span>
+                </p>
+            </article>
+        {% endfor %}
+    </div>
 
-				<!-- Footer -->
-					<footer id="footer" class="panel">
-						<div class="inner split">
-							<div>
-								<section>
-									<h2>Magna feugiat sed adipiscing</h2>
-									<p>Nulla consequat, ex ut suscipit rutrum, mi dolor tincidunt erat, et scelerisque turpis ipsum eget quis orci mattis aliquet. Maecenas fringilla et ante at lorem et ipsum. Dolor nulla eu bibendum sapien. Donec non pharetra dui. Nulla consequat, ex ut suscipit rutrum, mi dolor tincidunt erat, et scelerisque turpis ipsum.</p>
-								</section>
-								<section>
-									<h2>Follow me on ...</h2>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-										<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-										<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-									</ul>
-								</section>
-								<p class="copyright">
-									&copy; Unttled. Design: <a href="http://html5up.net">HTML5 UP</a>.
-								</p>
-							</div>
-							<div>
-								<section>
-									<h2>Get in touch</h2>
-									<form method="post" action="#">
-										<div class="fields">
-											<div class="field half">
-												<input type="text" name="name" id="name" placeholder="Name" />
-											</div>
-											<div class="field half">
-												<input type="text" name="email" id="email" placeholder="Email" />
-											</div>
-											<div class="field">
-												<textarea name="message" id="message" rows="4" placeholder="Message"></textarea>
-											</div>
-										</div>
-										<ul class="actions">
-											<li><input type="submit" value="Send" class="primary" /></li>
-											<li><input type="reset" value="Reset" /></li>
-										</ul>
-									</form>
-								</section>
-							</div>
-						</div>
-					</footer>
+    <!-- Footer -->
+    <footer id="footer" class="panel">
+        <div class="inner split">
+            <div>
+                <section>
+                    <h2>Cafe with Wi-Fi in London area</h2>
+                </section>
+                <section>
+                    <h2>I have also included, </h2>
+                    <ol class="icons">
+                            <li>the location of the cafe</li><br>
+                            <li>whether it has Wi-Fi or not</li><br>
+                            <li>whether it has sockets or not</li><br>
+                            <li>whether it has a toilet or not</li><br>
+                            <li>whether it is a good place to take calls or not</li><br>
+                            <li>the price of coffee</li><br>
+                            <li>the number of seats</li><br>
+                    </ol>
+                </section>
+                <p class="copyright">
+                    &copy; Unttled. Design: <a href="http://html5up.net">HTML5 UP</a>.
+                </p>
+            </div>
+            <div>
+                <section>
+                    <h2>Add A Cafe</h2>
+                    {% from 'bootstrap/form.html' import render_field %}
+                    <form method="post" action="{{ url_for('add_cafe') }}">
+                        {{ form.csrf_token() }}
+                        <div class="fields">
+                            <div class="field half">
+                                {{ render_field(form.name, id='name', placeholder="Name") }}
+                            </div>
+                            <div class="field half">
+                                {{ render_field(form.location, id='location', placeholder="Location") }}
+                            </div>
+                            <div class="field half">
+                                {{ render_field(form.seats, id='seats', placeholder="Seats") }}
+                            </div>
+                            <div class="field half">
+                                {{ render_field(form.coffee_price, id='coffee_price', placeholder="Coffee Price") }}
+                            </div>
+                            <div class="field">
+                                {{ render_field(form.img_url, id='img_url', placeholder="Image URL") }}
+                            </div>
+                            <div class="field">
+                                {{ render_field(form.map_url, id='map_url', placeholder="Map URL") }}
+                            </div>
+                            <div class="field half">
+                                {{ render_field(form.has_wifi, id='has_wifi', placeholder="Has Wifi?") }}
+                            </div>
+                            <div class="field half">
+                                {{ render_field(form.has_sockets, id='has_sockets', placeholder="Has Sockets?") }}
+                            </div>
+                            <div class="field half">
+                                {{ render_field(form.has_toilet, id='has_toilet', placeholder="Has Toilet?") }}
+                            </div>
+                            <div class="field half">
+                                {{ render_field(form.can_take_calls, id='can_take_calls', placeholder="Can Take Calls?") }}
+                            </div>
+                        </div>
+                        <ul class="actions">
+                            <li>{{ render_field(form.submit, class="primary") }}</li>
+                            <li><input type="reset" value="Reset"/></li>
+                        </ul>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </footer>
 
-			</div>
+</div>
 
-		<!-- Scripts -->
-			<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
-			<script src="{{ url_for('static', filename='assets/js/jquery.poptrox.min.js') }}"></script>
-			<script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
-			<script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
-			<script src="{{  url_for('static', filename='assets/js/util.js') }}"></script>
-			<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+<!-- Scripts -->
+<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/jquery.poptrox.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
 
-	</body>
+</body>
 </html>
