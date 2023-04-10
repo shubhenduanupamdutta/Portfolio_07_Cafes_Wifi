@@ -10,9 +10,11 @@ import os
 
 # Environment Variables
 DATABASE_URI = os.environ['DATABASE_URI']
+SECRET_KEY = os.environ['SECRET_KEY']
+
 # Initialize Flask App
 app = Flask(__name__)
-app.secret_key = 'cc01ff520e914e64639c81957e91aa88b17076f648f4e0560011e3bb3cd88cf8'
+app.secret_key = SECRET_KEY
 
 # Initialize Database
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
