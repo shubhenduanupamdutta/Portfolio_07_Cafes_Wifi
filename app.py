@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, flash
+from werkzeug.security import check_password_hash, generate_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap5
 from flask_wtf import FlaskForm
@@ -11,7 +12,7 @@ import os
 # Environment Variables
 DATABASE_URI = os.environ['DATABASE_URI']
 SECRET_KEY = os.environ['SECRET_KEY']
-
+PASSKEYS = [generate_password_hash(passkey.strip()) for passkey in os.environ['PASSKEYS'].split(',')]
 # Initialize Flask App
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
@@ -40,6 +41,13 @@ class CafeAddForm(FlaskForm):
     can_take_calls = BooleanField(label='Can Take Calls')
     coffee_price = StringField(label='Coffee Price', validators=[InputRequired()])
     submit = SubmitField(label='Submit')
+
+
+# Confirm Delete Form
+class ConfirmDeleteForm(FlaskForm):
+    passkey = StringField(label='Passkey')
+    submit = SubmitField(label='Confirm Deletion')
+    close = SubmitField(label='Close')
 
 
 # Cafe TABLE Configuration
@@ -85,13 +93,24 @@ def add_cafe():
         return redirect(url_for('home'))
 
 
-@app.route('/delete/<int:cafe_id>')
+@app.route('/delete/<int:cafe_id>', methods=['GET', 'POST'])
 def delete_cafe(cafe_id: int):
+    form = ConfirmDeleteForm()
     cafe_to_delete = db.get_or_404(Cafe, cafe_id)
-    db.session.delete(cafe_to_delete)
-    db.session.commit()
-    flash(f'Cafe {cafe_to_delete.name} deleted successfully!', category='success')
-    return redirect(url_for('home'))
+    if form.validate_on_submit():
+        print("validated")
+        passkey_match = [check_password_hash(passkey_hash, form.passkey.data) for passkey_hash in PASSKEYS]
+        print(passkey_match)
+        if cafe_id > 21 or any(passkey_match):
+            db.session.delete(cafe_to_delete)
+            db.session.commit()
+            flash(f'Cafe {cafe_to_delete.name} deleted successfully!', category='success')
+            return redirect(url_for('home'))
+        else:
+            flash('Incorrect Passkey!', category='danger')
+            return redirect(url_for('home'))
+
+    return render_template('confirm-del.html', form=form, cafe=cafe_to_delete)
 
 @app.context_processor
 def inject_templates():

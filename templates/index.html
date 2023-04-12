@@ -4,7 +4,7 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="en">
 <head>
     <title>Cafe and Wifi</title>
     <meta charset="utf-8"/>
@@ -22,9 +22,9 @@
 
     <!-- Header -->
     <header id="header">
-        <h1><a href="index.html"><strong>Cafes and Wifi</strong> by Shubhendu 😄</a> <br>
-                {% from 'bootstrap/utils.html' import render_messages %}
-                    {{ render_messages() }}
+        <h1><a href="index.html"><strong>Cafes and Wifi</strong> by Shubhendu</a> <br>
+            {% from 'bootstrap/utils.html' import render_messages %}
+            {{ render_messages() }}
         </h1>
         <nav>
             <ul>
@@ -40,7 +40,7 @@
                 <a href="{{ cafe.img_url }}" class="image"><img src="{{ cafe.img_url }}" alt=""></a>
                 <h2> &nbsp; {{ cafe.name }} <br> &nbsp;
                     <span style="font-size: 0.8em;">{{ cafe.location }} &emsp;
-                        {% if cafe.has_wifi +%}
+                        {% if cafe.has_wifi %}
                             <i class="fa-solid fa-wifi"></i>
                             <span style="color: green;"><i class="fa-solid fa-circle-check"></i></span>
                         {% else %}
@@ -76,10 +76,12 @@
                     &emsp;
                     <i class="fa-solid fa-mug-hot"></i> {{ cafe.coffee_price }} &emsp;
                     <i class="fa-solid fa-people-group"></i> {{ cafe.seats }} &emsp;
-                    <span style="font-size: 1.2em; color"><a href="{{ url_for('delete_cafe', cafe_id=cafe.id) }}" aria-label="Delete">'❌'</a></span>
+                    <span style="font-size: 1.2em;"><a href="{{ url_for('delete_cafe', cafe_id=cafe.id) }}"
+                                                       aria-label="Delete">'❌'</a></span>
                 </p>
             </article>
         {% endfor %}
+
     </div>
 
     <!-- Footer -->
@@ -92,13 +94,20 @@
                 <section>
                     <h2>I have also included, </h2>
                     <ol class="icons">
-                            <li>the location of the cafe</li><br>
-                            <li>whether it has Wi-Fi or not</li><br>
-                            <li>whether it has sockets or not</li><br>
-                            <li>whether it has a toilet or not</li><br>
-                            <li>whether it is a good place to take calls or not</li><br>
-                            <li>the price of coffee</li><br>
-                            <li>the number of seats</li><br>
+                        <li>the location of the cafe</li>
+                        <br>
+                        <li>whether it has Wi-Fi or not</li>
+                        <br>
+                        <li>whether it has sockets or not</li>
+                        <br>
+                        <li>whether it has a toilet or not</li>
+                        <br>
+                        <li>whether it is a good place to take calls or not</li>
+                        <br>
+                        <li>the price of coffee</li>
+                        <br>
+                        <li>the number of seats</li>
+                        <br>
                     </ol>
                 </section>
                 <p class="copyright">
@@ -162,6 +171,5 @@
 <script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
 <script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
 <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
-
 </body>
 </html>

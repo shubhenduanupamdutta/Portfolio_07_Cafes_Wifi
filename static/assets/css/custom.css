@@ -1,0 +1,50 @@
+.form-popup {
+    width: 400px;
+    background: white;
+    border-radius: 6px;
+    position: relative;
+    text-align: center;
+    padding: 0 20px 20px;
+    visibility: hidden;
+}
+
+.form-popup#myForm p {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000000 !important;
+    padding-top: 20px;
+    padding-bottom: 5px;
+
+}
+
+.form-popup ul {
+    padding: 0;
+}
+
+.form-popup label {
+    color: black !important;
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.form-popup .passkey {
+    background-color: antiquewhite !important;
+    color: black !important;
+}
+
+.form-popup .btn {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: 10px;
+    border-radius: 6px;
+}
+.form-popup .btn-danger {
+    background-color: orangered !important;
+}
+
+.form-popup .btn-success {
+    background-color: greenyellow !important;
+}

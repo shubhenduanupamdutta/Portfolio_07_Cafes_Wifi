@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Deletion</title>
+    {{ bootstrap.load_css() }}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/custom.css') }}"/>
+</head>
+<body>
+<div class="container">
+    <h1> Confirm Delete </h1>
+            <ul>
+            <li> You will need a passkey to delete first 21 entries</li>
+            <li> If you want to check functionality you can add your own entry and then delete it.
+                To delete after 21 entry, you can leave passkey blank.
+            </li>
+            <li> To get a pass key you can look through options at
+                <a href="https://github.com/shubhenduanupamdutta"> GitHub Profile</a> and contact me.
+            </li>
+        </ul>
+
+    <br>
+    <br>
+    <img src="{{ cafe.img_url }}" width=40% alt="cafe-image">
+    <ul>
+        <li> Cafe ID: {{ cafe.id }}</li>
+        <li> Cafe Name: {{ cafe.name }}</li>
+        <li> Cafe Location: {{ cafe.location }}</li>
+    </ul>
+
+    {% from 'bootstrap/form.html' import render_field %}
+    <form action="{{ url_for('delete_cafe', cafe_id=cafe.id ) }}" method='post'>
+        {{ form.csrf_token() }}
+        {{ render_field(form.passkey, placeholder="Enter Passkey", class='passkey') }}
+        {{ render_field(form.submit, class='btn btn-danger btn-sm mb-3') }}
+        {{ render_field(form.close, class='btn btn-success btn-sm mb-3', id="closePopup") }}
+    </form>
+</div>
+
+{{ bootstrap.load_js() }}
+</body>
+</html>
