@@ -1,50 +1,49 @@
-.form-popup {
-    width: 400px;
-    background: white;
-    border-radius: 6px;
-    position: relative;
+body {
+    background-color: navajowhite;
+}
+
+.container h1 {
     text-align: center;
-    padding: 0 20px 20px;
-    visibility: hidden;
-}
-
-.form-popup#myForm p {
-    font-family: "Times New Roman", Times, serif;
-    font-size: 2rem;
+    color: red;
+    font-family: "Helvetica", sans-serif;
+    font-size: 3rem;
     font-weight: bold;
-    color: #000000 !important;
-    padding-top: 20px;
-    padding-bottom: 5px;
-
 }
 
-.form-popup ul {
-    padding: 0;
+.container ul {
+    padding: 0 25% 0;
+    font-size: 1.1rem;
+    font-family: "Ubuntu", sans-serif;
+    line-height: 1.5rem;
 }
 
-.form-popup label {
-    color: black !important;
+.row .cafe-image {
+    text-align: center;
+}
+
+.row .cafe-details {
+    margin: auto;
+}
+.row ul {
+    padding-left: 20px;
     text-align: left;
-    font-size: 1.5rem;
-    font-weight: bold;
 }
 
-.form-popup .passkey {
-    background-color: antiquewhite !important;
-    color: black !important;
+.form label {
+    font-size: 1.1rem;
+    font-family: "Ubuntu", sans-serif;
+    line-height: 1.5rem;
+    padding-left: 5px;
 }
 
-.form-popup .btn {
-    font-family: "Times New Roman", Times, serif;
-    font-size: 0.8rem;
-    font-weight: bold;
-    margin-top: 10px;
-    border-radius: 6px;
-}
-.form-popup .btn-danger {
-    background-color: orangered !important;
+#delete-form {
+    width: min(80%, 300px);
+    margin: auto;
+    font-size: 1.2rem;
 }
 
-.form-popup .btn-success {
-    background-color: greenyellow !important;
+#delete-form .btn {
+    margin: 10px;
+    font-size: 1.2rem;
+    font-family: "Ubuntu", sans-serif;
 }

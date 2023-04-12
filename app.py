@@ -70,8 +70,8 @@ class Cafe(db.Model):
 
 
 # creating the table
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
 
 
 @app.route('/')
